@@ -1,4 +1,5 @@
-"use client"
+"use client";
+export const ssr = false;
 
 import DashboardHeader from "@/components/dashboard/dashboard-header"
 import Sidebar from "@/components/dashboard/sidebar"

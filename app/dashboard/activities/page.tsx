@@ -1,3 +1,5 @@
+"use client"
+
 import DashboardHeader from "@/components/dashboard/dashboard-header"
 import Sidebar from "@/components/dashboard/sidebar"
 import ActivitiesEvents from "@/components/dashboard/activities-events"

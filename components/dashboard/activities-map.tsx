@@ -4,23 +4,38 @@ import { useState } from "react"
 import { Card } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { X, Clock, Users } from "lucide-react"
-import * as L from "leaflet"
-
-const activityIcon = L.icon({
-  iconUrl: "/pin.png", // chemin vers ton image dans /public
-  iconSize: [32, 32],
-  iconAnchor: [16, 32],   // point au bas de l’icône
-  popupAnchor: [0, -28],  // où s’ouvre la popup par rapport à l’icône
-})
-
-
 import dynamic from "next/dynamic"
-// Import dynamique pour éviter l'erreur SSR de Next.js
-const MapContainer = dynamic(() => import("react-leaflet").then(m => m.MapContainer), { ssr: false })
-const TileLayer = dynamic(() => import("react-leaflet").then(m => m.TileLayer), { ssr: false })
-const Marker = dynamic(() => import("react-leaflet").then(m => m.Marker), { ssr: false })
-const Popup = dynamic(() => import("react-leaflet").then(m => m.Popup), { ssr: false })
 
+// 🔥 IMPORTANT : Charger Leaflet UNIQUEMENT côté client
+const L = typeof window !== "undefined" ? require("leaflet") : null
+
+// 🔥 Charger les composants React Leaflet SANS SSR
+const MapContainer = dynamic(
+  () => import("react-leaflet").then((m) => m.MapContainer),
+  { ssr: false }
+)
+const TileLayer = dynamic(
+  () => import("react-leaflet").then((m) => m.TileLayer),
+  { ssr: false }
+)
+const Marker = dynamic(
+  () => import("react-leaflet").then((m) => m.Marker),
+  { ssr: false }
+)
+const Popup = dynamic(
+  () => import("react-leaflet").then((m) => m.Popup),
+  { ssr: false }
+)
+
+// 🔥 L’icône Leaflet doit aussi être créée côté client
+const activityIcon =
+  L &&
+  L.icon({
+    iconUrl: "/pin.png",
+    iconSize: [32, 32],
+    iconAnchor: [16, 32],
+    popupAnchor: [0, -28],
+  })
 
 const parisNeighborhoods = [
   { name: "Marais", lat: 48.8604, lng: 2.3585 },
@@ -74,23 +89,17 @@ const activitiesData = [
 ]
 
 export default function ActivitiesMap({ activeCategory }: { activeCategory: string }) {
-  const [selectedActivity, setSelectedActivity] =
-    useState<(typeof activitiesData)[number] | null>(null)
+  const [selectedActivity, setSelectedActivity] = useState<null | (typeof activitiesData)[number]>(null)
   const [joined, setJoined] = useState<number[]>([])
 
   const filteredActivities =
     activeCategory === "tous"
       ? activitiesData
-      : activitiesData.filter((activity) => activity.category === activeCategory)
+      : activitiesData.filter((a) => a.category === activeCategory)
 
   const activitiesWithCoords = filteredActivities.map((activity, idx) => {
-    const neighborhood = parisNeighborhoods[idx % parisNeighborhoods.length]
-    return {
-      ...activity,
-      lat: neighborhood.lat,
-      lng: neighborhood.lng,
-      neighborhoodName: neighborhood.name,
-    }
+    const n = parisNeighborhoods[idx % parisNeighborhoods.length]
+    return { ...activity, lat: n.lat, lng: n.lng, neighborhoodName: n.name }
   })
 
   const mapCenter: [number, number] = [48.8566, 2.3522]
@@ -104,12 +113,8 @@ export default function ActivitiesMap({ activeCategory }: { activeCategory: stri
   return (
     <div className="space-y-4">
       <div>
-        <h3 className="text-lg font-semibold text-foreground">
-          Activités près de chez toi
-        </h3>
-        <p className="text-sm text-muted-foreground">
-          Explore la carte pour voir les activités disponibles
-        </p>
+        <h3 className="text-lg font-semibold text-foreground">Activités près de chez toi</h3>
+        <p className="text-sm text-muted-foreground">Explore la carte pour voir les activités disponibles</p>
       </div>
 
       <Card className="border-0 overflow-hidden">
@@ -119,7 +124,7 @@ export default function ActivitiesMap({ activeCategory }: { activeCategory: stri
             zoom={12}
             scrollWheelZoom={true}
             style={{ width: "100%", height: "100%" }}
-            className="z-10 rounded-xl"
+            className="rounded-xl"
           >
             <TileLayer
               attribution='&copy; OpenStreetMap contributors'
@@ -130,24 +135,16 @@ export default function ActivitiesMap({ activeCategory }: { activeCategory: stri
               <Marker
                 key={activity.id}
                 position={[activity.lat, activity.lng]}
-                icon={activityIcon}
-                eventHandlers={{
-                  click: () => setSelectedActivity(activity),
-                }}
+                icon={activityIcon || undefined}
+                eventHandlers={{ click: () => setSelectedActivity(activity) }}
               >
                 <Popup>
                   <div className="space-y-1">
                     <p className="font-semibold text-sm">{activity.title}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {activity.description}
-                    </p>
+                    <p className="text-xs text-muted-foreground">{activity.description}</p>
                     <p className="text-xs mt-1">{activity.time}</p>
 
-                    <Button
-                      size="sm"
-                      className="mt-2 w-full"
-                      onClick={() => handleJoin(activity.id)}
-                    >
+                    <Button size="sm" className="mt-2 w-full" onClick={() => handleJoin(activity.id)}>
                       {joined.includes(activity.id) ? "✓ Inscrite" : "S'inscrire"}
                     </Button>
                   </div>
@@ -158,7 +155,6 @@ export default function ActivitiesMap({ activeCategory }: { activeCategory: stri
         </div>
       </Card>
 
-      {/* Modal d’activité */}
       {selectedActivity && (
         <Card className="border-0 bg-white p-6 relative">
           <button
@@ -182,10 +178,7 @@ export default function ActivitiesMap({ activeCategory }: { activeCategory: stri
             </div>
           </div>
 
-          <Button
-            onClick={() => handleJoin(selectedActivity.id)}
-            className="w-full"
-          >
+          <Button onClick={() => handleJoin(selectedActivity.id)} className="w-full">
             {joined.includes(selectedActivity.id) ? "✓ Inscrite" : "S'inscrire"}
           </Button>
         </Card>

@@ -1,11 +1,24 @@
 "use client"
 
-export const ssr = false
+// ⛔ Interdire complètement le SSR, le prerender et le static rendering :
+export const ssr = false;
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
-import DashboardHeader from "@/components/dashboard/dashboard-header"
-import Sidebar from "@/components/dashboard/sidebar"
-import ActivitiesEvents from "@/components/dashboard/activities-events"
-import DashboardFooter from "@/components/dashboard/dashboard-footer"
+// ⛔ Import dynamique du composant qui contient la map :
+import dynamic from "next/dynamic";
+
+const ActivitiesEvents = dynamic(
+  () => import("@/components/dashboard/activities-events"),
+  {
+    ssr: false,       // <-- très important
+    loading: () => <p>Chargement…</p>,
+  }
+);
+
+import DashboardHeader from "@/components/dashboard/dashboard-header";
+import Sidebar from "@/components/dashboard/sidebar";
+import DashboardFooter from "@/components/dashboard/dashboard-footer";
 
 export default function ActivitiesPage() {
   return (
@@ -21,5 +34,5 @@ export default function ActivitiesPage() {
         <DashboardFooter />
       </main>
     </div>
-  )
+  );
 }

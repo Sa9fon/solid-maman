@@ -1,0 +1,20 @@
+{
+  "/_global-error/page": "/_global-error",
+  "/_not-found/page": "/_not-found",
+  "/dashboard/activities/page": "/dashboard/activities",
+  "/dashboard/admin-help/page": "/dashboard/admin-help",
+  "/dashboard/aide-aux-devoirs/page": "/dashboard/aide-aux-devoirs",
+  "/dashboard/calendar/page": "/dashboard/calendar",
+  "/dashboard/communities/page": "/dashboard/communities",
+  "/dashboard/garde-enfant/page": "/dashboard/garde-enfant",
+  "/dashboard/messages/page": "/dashboard/messages",
+  "/dashboard/mon-compte/page": "/dashboard/mon-compte",
+  "/dashboard/page": "/dashboard",
+  "/dashboard/psychologists/page": "/dashboard/psychologists",
+  "/dashboard/repas/page": "/dashboard/repas",
+  "/dashboard/todo/page": "/dashboard/todo",
+  "/page": "/",
+  "/services/aide-administrative/page": "/services/aide-administrative",
+  "/services/garde-enfant/page": "/services/garde-enfant",
+  "/services/soutien-emotionnel/page": "/services/soutien-emotionnel"
+}

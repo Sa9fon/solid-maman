@@ -1,0 +1,152 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/dashboard",
+      "regex": "^/dashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard(?:/)?$"
+    },
+    {
+      "page": "/dashboard/activities",
+      "regex": "^/dashboard/activities(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/activities(?:/)?$"
+    },
+    {
+      "page": "/dashboard/admin-help",
+      "regex": "^/dashboard/admin\\-help(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/admin\\-help(?:/)?$"
+    },
+    {
+      "page": "/dashboard/aide-aux-devoirs",
+      "regex": "^/dashboard/aide\\-aux\\-devoirs(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/aide\\-aux\\-devoirs(?:/)?$"
+    },
+    {
+      "page": "/dashboard/calendar",
+      "regex": "^/dashboard/calendar(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/calendar(?:/)?$"
+    },
+    {
+      "page": "/dashboard/communities",
+      "regex": "^/dashboard/communities(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/communities(?:/)?$"
+    },
+    {
+      "page": "/dashboard/garde-enfant",
+      "regex": "^/dashboard/garde\\-enfant(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/garde\\-enfant(?:/)?$"
+    },
+    {
+      "page": "/dashboard/messages",
+      "regex": "^/dashboard/messages(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/messages(?:/)?$"
+    },
+    {
+      "page": "/dashboard/mon-compte",
+      "regex": "^/dashboard/mon\\-compte(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/mon\\-compte(?:/)?$"
+    },
+    {
+      "page": "/dashboard/psychologists",
+      "regex": "^/dashboard/psychologists(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/psychologists(?:/)?$"
+    },
+    {
+      "page": "/dashboard/repas",
+      "regex": "^/dashboard/repas(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/repas(?:/)?$"
+    },
+    {
+      "page": "/dashboard/todo",
+      "regex": "^/dashboard/todo(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/todo(?:/)?$"
+    },
+    {
+      "page": "/services/aide-administrative",
+      "regex": "^/services/aide\\-administrative(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/aide\\-administrative(?:/)?$"
+    },
+    {
+      "page": "/services/garde-enfant",
+      "regex": "^/services/garde\\-enfant(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/garde\\-enfant(?:/)?$"
+    },
+    {
+      "page": "/services/soutien-emotionnel",
+      "regex": "^/services/soutien\\-emotionnel(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/services/soutien\\-emotionnel(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

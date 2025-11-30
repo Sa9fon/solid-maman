@@ -1,0 +1,17 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/dashboard/activities/page": "app/dashboard/activities/page.js",
+  "/dashboard/admin-help/page": "app/dashboard/admin-help/page.js",
+  "/dashboard/aide-aux-devoirs/page": "app/dashboard/aide-aux-devoirs/page.js",
+  "/dashboard/calendar/page": "app/dashboard/calendar/page.js",
+  "/dashboard/communities/page": "app/dashboard/communities/page.js",
+  "/dashboard/garde-enfant/page": "app/dashboard/garde-enfant/page.js",
+  "/dashboard/messages/page": "app/dashboard/messages/page.js",
+  "/dashboard/mon-compte/page": "app/dashboard/mon-compte/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/psychologists/page": "app/dashboard/psychologists/page.js",
+  "/dashboard/repas/page": "app/dashboard/repas/page.js",
+  "/dashboard/todo/page": "app/dashboard/todo/page.js",
+  "/page": "app/page.js",
+  "/services/aide-administrative/page": "app/services/aide-administrative/page.js"
+}
